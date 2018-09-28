@@ -1,0 +1,55 @@
+package GroceryInvoice;
+
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class InvoiceApp {
+
+    public static void main(String[] args) {
+
+        HashSet<GroceryItems> myItems = new HashSet<>();
+
+
+        Scanner input = new Scanner(System.in);
+        String data ;
+        int itemsPuchased = 0;
+        do {
+            System.out.println("Enter Item Name");
+            GroceryItems items = new GroceryItems();
+            String itemName = input.nextLine();
+            items.setItemName(itemName);
+            //loop
+
+            System.out.println("Enter Item Price");
+            double priceItem = input.nextDouble();
+            items.setPrice(priceItem);
+
+            System.out.println("Enter Item Quantity");
+            int numberOfItem = input.nextInt();
+            items.setQuantity(numberOfItem);
+
+            double cost = numberOfItem * priceItem;
+            items.setCost(cost);
+            myItems.add(items);
+            itemsPuchased++;
+
+            System.out.println("Do you have another Item? Yes or No");
+            data = input.nextLine();
+
+        } while (data.equalsIgnoreCase("Yes"));
+
+
+        for (GroceryItems obj : myItems) {
+
+            System.out.println("Name: " + obj.getItemName() + "\n" + "Price: " + obj.getPrice()
+                    + "\n" + "Quantity: " + obj.getQuantity()
+                    + "\n" + "Cost:" + obj.getCost());
+        }
+
+        System.out.println("Total Purchase Amount = ");
+
+        System.out.println("Total Items Purchased: " + itemsPuchased);
+
+    }
+
+}
